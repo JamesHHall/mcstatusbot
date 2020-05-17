@@ -16,7 +16,7 @@ embedColor = ("0x" + settings.embedColor);
  }
 
  function getServerStatus() {
-     mcping(settings.ip, settings.port, function(err, res) {
+     mcping(process.env.SERVER_IP, process.env.SERVER_PORT, function(err, res) {
          if (!(typeof err === 'undefined' || err === null)) {
              client.user.setStatus('dnd');
              serverStatus = 'Server offline';
@@ -70,5 +70,5 @@ client.on("ready", () => {
     getServerStatus()
     client.setInterval(getServerStatus, pingFrequency);
 });
-client.login(settings.token);
+client.login(process.env.BOT_TOKEN);
 
