@@ -317,3 +317,5 @@
 /node_modules/discord.js/src/client/websocket/WebSocketManager.js
 /node_modules/discord.js/src/client/websocket/packets/WebSocketPacketManager.js
 /.idea/jsLibraryMappings.xml
+/node_modules/*
+.env

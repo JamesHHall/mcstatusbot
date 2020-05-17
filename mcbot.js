@@ -1,5 +1,6 @@
+require('dotenv').config({path: __dirname + '/.env'})
 const Discord = require("discord.js");
-const mcping = require('mc-ping-updated');
+const mcping = require('mcpe-ping');
 const chalk = require('chalk');
 const escape = require('markdown-escape');
 const fs = require('fs');
@@ -27,9 +28,9 @@ embedColor = ("0x" + settings.embedColor);
              console.error(err);
              return;
          }
-         if (typeof res.players.sample === 'undefined') { client.user.setStatus('idle') }
-         if (!(typeof res.players.sample === 'undefined')) { client.user.setStatus('online') }
-         serverStatus = res.players.online + ' / ' + res.players.max;
+         if (!res.connected) { client.user.setStatus('idle') }
+         else { client.user.setStatus('online') }
+         serverStatus = res.currentPlayers + ' / ' + res.maxPlayers;
          getDate()
          client.user.setActivity(serverStatus, { type: 'PLAYING' }).then(presence => console.log(
              chalk.cyan('\[' + cleanDate + '\]:') + chalk.white(' Ping: ' + serverStatus)
